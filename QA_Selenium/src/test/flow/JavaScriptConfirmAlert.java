@@ -31,7 +31,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class JavaScriptSimpleAlert {
+public class JavaScriptConfirmAlert {
 	
 	WebDriver driver;
 	
@@ -43,25 +43,45 @@ public class JavaScriptSimpleAlert {
 	}
 	
 	@Test
-	void testSimpleAlert(){
+	void testConfirmAccept(){
 		
-		driver.get("file:///C:/Users/apastukhova/Desktop/alert.html");
+		driver.get("file:///C:/Users/apastukhova/Desktop/alertconfirm.html");
 		
 		WebElement button = driver.findElement(By.tagName("button"));
 		button.click();
 		
 		try {
 			Alert alert = driver.switchTo().alert();
-			
-			String alertText = alert.getText();
-			
+						
 			alert.accept();
 			
-			assertEquals(alertText, "I am an alert box!");
+			WebElement message = driver.findElement(By.id("demo"));
+			
+			assertEquals(message.getText(), "You pressed OK!");
 		} catch (NoAlertPresentException e) {
 			e.printStackTrace();
-		}
+		}	
+	}
+	
+	@Test
+	void testDismissAccept(){
+		
+		driver.get("file:///C:/Users/apastukhova/Desktop/alertconfirm.html");
+		
+		WebElement button = driver.findElement(By.tagName("button"));
+		button.click();
+		
+		try {
+			Alert alert = driver.switchTo().alert();
+						
+			alert.dismiss();
 			
+			WebElement message = driver.findElement(By.id("demo"));
+			
+			assertEquals(message.getText(), "You pressed Cancel!");
+		} catch (NoAlertPresentException e) {
+			e.printStackTrace();
+		}	
 	}
 			
 	@AfterMethod
@@ -70,21 +90,31 @@ public class JavaScriptSimpleAlert {
 	}	
 	
 	/*
-	 * <!DOCTYPE html>
+	 <!DOCTYPE html>
 		<html>
 		<body>
 		
-		<h2>JavaScript Alert</h2>
+		<h2>JavaScript Confirm Box</h2>
+		
 		
 		<button onclick="myFunction()">Try it</button>
 		
+		<p id="demo"></p>
+		
 		<script>
 		function myFunction() {
-		    alert("I am an alert box!");
+		    var txt;
+		    if (confirm("Press a button!")) {
+		        txt = "You pressed OK!";
+		    } else {
+		        txt = "You pressed Cancel!";
+		    }
+		    document.getElementById("demo").innerHTML = txt;
 		}
 		</script>
 		
 		</body>
 		</html>
+
 	 */
 }

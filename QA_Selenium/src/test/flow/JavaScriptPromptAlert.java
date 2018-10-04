@@ -31,7 +31,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class JavaScriptSimpleAlert {
+public class JavaScriptPromptAlert {
 	
 	WebDriver driver;
 	
@@ -43,9 +43,9 @@ public class JavaScriptSimpleAlert {
 	}
 	
 	@Test
-	void testSimpleAlert(){
+	void testPrompt(){
 		
-		driver.get("file:///C:/Users/apastukhova/Desktop/alert.html");
+		driver.get("file:///C:/Users/apastukhova/Desktop/alertprompt.html");
 		
 		WebElement button = driver.findElement(By.tagName("button"));
 		button.click();
@@ -53,11 +53,13 @@ public class JavaScriptSimpleAlert {
 		try {
 			Alert alert = driver.switchTo().alert();
 			
-			String alertText = alert.getText();
+			alert.sendKeys("Foo");
 			
 			alert.accept();
 			
-			assertEquals(alertText, "I am an alert box!");
+			WebElement message = driver.findElement(By.id("demo"));
+			
+			assertEquals(message.getText(), "Hello Foo! How are you today?");
 		} catch (NoAlertPresentException e) {
 			e.printStackTrace();
 		}
@@ -70,21 +72,31 @@ public class JavaScriptSimpleAlert {
 	}	
 	
 	/*
-	 * <!DOCTYPE html>
+	 <!DOCTYPE html>
 		<html>
 		<body>
 		
-		<h2>JavaScript Alert</h2>
+		<h2>JavaScript Prompt</h2>
 		
 		<button onclick="myFunction()">Try it</button>
 		
+		<p id="demo"></p>
+		
 		<script>
 		function myFunction() {
-		    alert("I am an alert box!");
+		    var txt;
+		    var person = prompt("Please enter your name:", "Harry Potter");
+		    if (person == null || person == "") {
+		        txt = "User cancelled the prompt.";
+		    } else {
+		        txt = "Hello " + person + "! How are you today?";
+		    }
+		    document.getElementById("demo").innerHTML = txt;
 		}
 		</script>
 		
 		</body>
 		</html>
+
 	 */
 }
