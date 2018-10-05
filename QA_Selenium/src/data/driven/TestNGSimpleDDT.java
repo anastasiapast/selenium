@@ -1,6 +1,6 @@
 package data.driven;
 
-import static org.testng.Assert.fail;
+import static org.junit.Assert.*;
 
 import java.io.File;
 
@@ -8,7 +8,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
@@ -57,7 +56,7 @@ public class TestNGSimpleDDT {
 			calculate.click();
 			
 			WebElement bmiResult = driver.findElement(By.name("bmi"));
-			Assert.assertEquals(bmi, bmiResult.getAttribute("value"));
+			assertEquals(bmi, bmiResult.getAttribute("value"));
 			
 			//The same for category label....
 		}
