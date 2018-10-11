@@ -17,5 +17,8 @@
 	<classpathentry kind="lib" path="C:/Users/apastukhova/Downloads/poi-bin-3.8-20120326/poi-3.8/poi-3.8-20120326.jar"/>
 	<classpathentry kind="lib" path="C:/Users/apastukhova/Downloads/poi-bin-3.8-20120326/poi-3.8/poi-ooxml-3.8-20120326.jar"/>
 	<classpathentry kind="lib" path="C:/Users/apastukhova/Downloads/poi-bin-3.8-20120326/poi-3.8/poi-ooxml-schemas-3.8-20120326.jar"/>
+	<classpathentry kind="lib" path="C:/Users/apastukhova/Downloads/commons-lang3-3.8.1-bin/commons-lang3-3.8.1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/BrowserMob"/>
+	<classpathentry kind="lib" path="C:/Users/apastukhova/Downloads/MonteScreenRecorder.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
